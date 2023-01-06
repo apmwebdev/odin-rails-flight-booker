@@ -14,9 +14,9 @@ class FlightsTest < ApplicationSystemTestCase
     visit flights_url
     click_on "New flight"
 
-    fill_in "Departure airport", with: @flight.departure_airport_id
+    fill_in "Departure airport", with: @flight.departure_airport_code
     fill_in "Departure time", with: @flight.departure_time
-    fill_in "Destination airport", with: @flight.destination_airport_id
+    fill_in "Destination airport", with: @flight.destination_airport_code
     fill_in "Duration", with: @flight.duration
     click_on "Create Flight"
 
@@ -28,9 +28,9 @@ class FlightsTest < ApplicationSystemTestCase
     visit flight_url(@flight)
     click_on "Edit this flight", match: :first
 
-    fill_in "Departure airport", with: @flight.departure_airport_id
+    fill_in "Departure airport", with: @flight.departure_airport_code
     fill_in "Departure time", with: @flight.departure_time
-    fill_in "Destination airport", with: @flight.destination_airport_id
+    fill_in "Destination airport", with: @flight.destination_airport_code
     fill_in "Duration", with: @flight.duration
     click_on "Update Flight"
 
