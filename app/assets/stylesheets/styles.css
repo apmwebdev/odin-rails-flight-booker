@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 18px;
+    color: hsl(0, 0%, 30%);
+}
+
+body {
+    padding: 0;
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin: 8px 0;
+}
+
+a {
+    color: hsl(230, 40%, 60%);
+}
+
+a:visited {
+    color: hsl(270, 40%, 60%);
+}
+
+.notice {
+    color: green;
+}
+
+.alert {
+    color: hsl(50, 60%, 45%);
+}
+
+header {
+    font-size: 20px;
+}
+
+header .message {
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

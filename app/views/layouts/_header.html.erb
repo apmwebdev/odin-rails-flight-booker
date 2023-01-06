@@ -1,0 +1,7 @@
+<header>
+  <div class="message">
+    <% flash.each do |name, message| %>
+      <div class="<%= name %>"><%= message %></div>
+    <% end %>
+  </div>
+</header>

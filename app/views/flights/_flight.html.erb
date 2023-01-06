@@ -1,22 +1,11 @@
 <div id="<%= dom_id flight %>">
-  <p>
-    <strong>Departure airport:</strong>
-    <%= flight.departure_airport_code %>
-  </p>
+  <h3><%= flight.departure_airport_code %> ->
+    <%= flight.destination_airport_code %></h3>
 
   <p>
-    <strong>Destination airport:</strong>
-    <%= flight.destination_airport_code %>
+    <%= flight.departure_date %> @
+    <%= flight.departure_time.strftime("%I:%M %p") %>
   </p>
 
-  <p>
-    <strong>Departure time:</strong>
-    <%= flight.departure_time %>
-  </p>
-
-  <p>
-    <strong>Duration:</strong>
-    <%= flight.duration %>
-  </p>
-
+  <p>Duration: <%= flight.duration %> minutes</p>
 </div>

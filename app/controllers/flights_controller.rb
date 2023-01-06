@@ -3,7 +3,7 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
-    @flights = Flight.all
+    @flights = Flight.all.order(:departure_date).limit(100)
   end
 
   # GET /flights/1 or /flights/1.json
