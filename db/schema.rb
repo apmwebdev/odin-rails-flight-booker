@@ -10,29 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_133205) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_06_143957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "airports", force: :cascade do |t|
+  create_table "airports", primary_key: "code", id: :string, force: :cascade do |t|
     t.string "city"
     t.string "state"
-    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_airports_on_code", unique: true
   end
 
   create_table "flights", force: :cascade do |t|
-    t.bigint "departure_airport_id", null: false
-    t.bigint "destination_airport_id", null: false
+    t.string "departure_airport_code", null: false
+    t.string "destination_airport_code", null: false
     t.datetime "departure_time"
     t.float "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["departure_airport_id"], name: "index_flights_on_departure_airport_id"
-    t.index ["destination_airport_id"], name: "index_flights_on_destination_airport_id"
+    t.index ["departure_airport_code"], name: "index_flights_on_departure_airport_code"
+    t.index ["destination_airport_code"], name: "index_flights_on_destination_airport_code"
   end
 
-  add_foreign_key "flights", "airports", column: "departure_airport_id"
-  add_foreign_key "flights", "airports", column: "destination_airport_id"
+  add_foreign_key "flights", "airports", column: "departure_airport_code", primary_key: "code"
+  add_foreign_key "flights", "airports", column: "destination_airport_code", primary_key: "code"
 end
