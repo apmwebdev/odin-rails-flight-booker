@@ -13,7 +13,7 @@
 
 ### Flight
 - departure_airport - references/belongs to airport
-- arrival_airport - references/belongs to airport
+- destination_airport - references/belongs to airport
 - departure_time
 - duration
 - has_many bookings
