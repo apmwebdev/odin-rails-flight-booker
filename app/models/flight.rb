@@ -4,6 +4,8 @@ class Flight < ApplicationRecord
   belongs_to :destination_airport, foreign_key: "destination_airport_code",
     class_name: "Airport"
 
+  attr_accessor :number_of_passengers
+
   def departure_date_formatted
     departure_date.strftime("%m/%d/%Y")
   end

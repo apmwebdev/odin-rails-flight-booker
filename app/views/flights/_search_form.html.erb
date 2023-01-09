@@ -18,7 +18,8 @@ end %>
     <%= form.label :departure_date %>
     <%= form.select :departure_date, @date_options,
       selected: params[:departure_date] %>
-    <%#= form.label :number_of_passengers, "Passengers" %>
-    <%#= form.select :number_of_passengers, [1, 2, 3, 4] %>
+    <%= form.label :number_of_passengers, "Passengers" %>
+    <%= form.select :number_of_passengers, [1, 2, 3, 4],
+      selected: params[:number_of_passengers] %>
     <%= form.submit "Submit", name: nil %>
 <% end %>
