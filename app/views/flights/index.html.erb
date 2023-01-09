@@ -1,6 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Flights</h1>
+
+<%= render "search_form", flight: @flight %>
 
 <div id="flights">
   <% @flights.each do |flight| %>

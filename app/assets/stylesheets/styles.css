@@ -11,8 +11,12 @@ body {
     padding: 0;
 }
 
-h3 {
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
+}
+
+h1, h2 {
+    margin-bottom: 16px;
 }
 
 p {
@@ -43,4 +47,18 @@ header .message {
     margin-top: 20px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.flight-search-form {
+    display: grid;
+    justify-content: start;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(5, max-content);
+    grid-auto-flow: column;
+    gap: 8px 16px;
+    margin-bottom: 24px;
+}
+
+.flight-search-form input[type="submit"] {
+    grid-row: 2 / 3;
 }

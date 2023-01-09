@@ -1,0 +1,24 @@
+<h2>Search</h2>
+
+<% @airport_options = Airport.all.map do |a|
+  ["#{a.city}, #{a.state}", a.code]
+end %>
+<% @date_options = Flight.get_departure_dates.map do |item|
+  [item.departure_date_formatted, item.departure_date]
+end %>
+
+<%= form_with url: flights_path, method: "get", local: true,
+    class: "flight-search-form" do |form| %>
+    <%= form.label :departure_airport_code %>
+    <%= form.select :departure_airport_code, @airport_options,
+      selected: params[:departure_airport_code] %>
+    <%= form.label :destination_airport_code %>
+    <%= form.select :destination_airport_code, @airport_options,
+      selected: params[:destination_airport_code] %>
+    <%= form.label :departure_date %>
+    <%= form.select :departure_date, @date_options,
+      selected: params[:departure_date] %>
+    <%#= form.label :number_of_passengers, "Passengers" %>
+    <%#= form.select :number_of_passengers, [1, 2, 3, 4] %>
+    <%= form.submit "Submit", name: nil %>
+<% end %>

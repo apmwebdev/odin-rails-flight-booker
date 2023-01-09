@@ -3,7 +3,25 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
-    @flights = Flight.all.order(:departure_date).limit(100)
+    @flight = params[:flight] ? Flight.new(flight_params) : Flight.new
+    if params.has_key?(:departure_airport_code)
+      @flights = Flight.where(
+        departure_airport_code: params[:departure_airport_code],
+        destination_airport_code: params[:destination_airport_code],
+        departure_date: params[:departure_date]
+      )
+        .includes(:departure_airport, :destination_airport)
+        .order(:departure_date, :departure_time)
+        .limit(100)
+    else
+      @flights = Flight.all.includes(:departure_airport, :destination_airport)
+        .order(:departure_date, :departure_time)
+        .limit(100)
+    end
+    # else
+    #   @flights = Flight.all.includes(:departure_airport, :destination_airport)
+    #     .order(:departure_date, :departure_time )
+    #     .limit(100)
   end
 
   # GET /flights/1 or /flights/1.json
@@ -58,13 +76,14 @@ class FlightsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flight
-      @flight = Flight.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_flight
+    @flight = Flight.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def flight_params
-      params.require(:flight).permit(:departure_airport_code, :destination_airport_code, :departure_time, :duration)
-    end
+  # Only allow a list of trusted parameters through.
+  def flight_params
+    params.require(:flight).permit(:departure_airport_code,
+      :destination_airport_code, :departure_date, :number_of_passengers)
+  end
 end
