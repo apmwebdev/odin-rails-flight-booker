@@ -1,3 +1,10 @@
+## To-dos
+- Remove unnecessary resource methods/views
+- Either remove editing of bookings or make it so the passengers don't get
+added again when you edit them
+- Remove number_of_passengers field from Booking model/table
+- Improve UI overall. Very quick and dirty currently.
+
 ## Models
 - Airport
 - Flight
