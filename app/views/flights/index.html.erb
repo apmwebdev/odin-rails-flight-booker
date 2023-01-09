@@ -5,11 +5,12 @@
 <div id="flights">
   <% @flights.each do |flight| %>
     <%= render flight %>
-    <p>
-      <%= link_to "Show this flight", flight %>
-    </p>
+    <%= form_with url: new_booking_path, method: "get" do |form| %>
+      <%= form.hidden_field :flight_id, value: flight.id %>
+      <%= form.hidden_field :number_of_passengers,
+        value: params[:number_of_passengers] %>
+      <%= form.submit "Book this flight", name: nil %>
+    <% end %>
     <br>
   <% end %>
 </div>
-
-<%= link_to "New flight", new_flight_path %>

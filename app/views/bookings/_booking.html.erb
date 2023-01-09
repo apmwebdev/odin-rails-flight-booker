@@ -1,12 +1,15 @@
 <div id="<%= dom_id booking %>">
-  <p>
-    <strong>Flight:</strong>
-    <%= booking.flight_id %>
-  </p>
+  <h2>Flight</h2>
+  Flight Number: <%= booking.flight_id %>
+  <br><%= booking.flight.departure_airport_code %> ->
+  <%= booking.flight.destination_airport_code %>
+  <br><%= booking.flight.departure_date_formatted %> @
+  <%= booking.flight.departure_time_formatted %>
 
-  <p>
-    <strong>Number of passengers:</strong>
-    <%= booking.number_of_passengers %>
-  </p>
-
+  <h2>Passengers</h2>
+  <ul>
+    <% booking.passengers.each do |passenger| %>
+      <li><%= passenger.name %>: <%= passenger.email %></li>
+    <% end %>
+  </ul>
 </div>

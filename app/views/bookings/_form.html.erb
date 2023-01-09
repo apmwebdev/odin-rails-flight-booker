@@ -10,17 +10,19 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :flight_id, value: booking.flight_id %>
+  <div>Flight: <%= booking.flight_id %></div>
+  <ul>
+    <%= form.fields_for :passengers do |passenger_form| %>
+      <li>
+        <%= passenger_form.label :name %>
+        <%= passenger_form.text_field :name %>
 
-  <div>
-    <%= form.label :flight_id, style: "display: block" %>
-    <%= form.text_field :flight_id %>
-  </div>
-
-  <div>
-    <%= form.label :number_of_passengers, style: "display: block" %>
-    <%= form.number_field :number_of_passengers %>
-  </div>
-
+        <%= passenger_form.label :email %>
+        <%= passenger_form.text_field :email %>
+      </li>
+    <% end %>
+  </ul>
   <div>
     <%= form.submit %>
   </div>

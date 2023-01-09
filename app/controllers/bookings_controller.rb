@@ -12,7 +12,9 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @booking = Booking.new
+    @booking = Booking.new(new_booking_params)
+    num_of_passengers = @booking.number_of_passengers.to_i
+    num_of_passengers.times { @booking.passengers.build }
   end
 
   # GET /bookings/1/edit
@@ -26,10 +28,8 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.save
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -39,10 +39,10 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
-        format.json { render :show, status: :ok, location: @booking }
+        # format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+        # format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,18 +53,25 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
-      format.json { head :no_content }
+      # format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
-      @booking = Booking.find(params[:id])
+      @booking = Booking.includes(:flight).find(params[:id])
     end
+
+  def new_booking_params
+    params.require(:flight_id)
+    params.require(:number_of_passengers)
+    params.permit(:flight_id, :number_of_passengers)
+  end
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:flight_id, :number_of_passengers)
+      params.require(:booking).permit(:flight_id,
+        passengers_attributes: [:name, :email])
     end
 end
