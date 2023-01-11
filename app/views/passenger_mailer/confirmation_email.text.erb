@@ -1,0 +1,8 @@
+Hi <%= @passenger.name %>. Your flight to
+  <%= @flight.departure_airport_code %> has been confirmed.
+------------------------------------------------------------
+Flight Information:
+  - Departing from: <%= @flight.departure_airport_code %>
+  - Arriving at: <%= @flight.destination_airport_code %>
+  - Departure time: <%= @flight.departure_date_time %>
+  - Duration: <%= @flight.duration %> minutes

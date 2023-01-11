@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @passenger.name %>. Your flight to
+      <%= @flight.departure_airport_code %> has been confirmed.</h1>
+    <h2>Flight Information</h2>
+    <ul>
+      <li>Departing from: <%= @flight.departure_airport_code %></li>
+      <li>Arriving at: <%= @flight.destination_airport_code %></li>
+      <li>Departure time: <%= @flight.departure_date_time %></li>
+      <li>Duration: <%= @flight.duration %> minutes</li>
+    </ul>
+  </body>
+</html>

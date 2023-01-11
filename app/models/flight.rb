@@ -7,6 +7,10 @@ class Flight < ApplicationRecord
 
   attr_accessor :number_of_passengers
 
+  def self.get_departure_dates
+    self.select(:departure_date).distinct.order(:departure_date)
+  end
+
   def departure_date_formatted
     departure_date.strftime("%m/%d/%Y")
   end
@@ -15,7 +19,7 @@ class Flight < ApplicationRecord
     departure_time.strftime("%I:%M %p")
   end
 
-  def self.get_departure_dates
-    self.select(:departure_date).distinct.order(:departure_date)
+  def departure_date_time
+    "#{departure_date_formatted} at #{departure_time_formatted}"
   end
 end
